@@ -1,5 +1,15 @@
 *.class
+bin/
 
-# Package Files #
+#SVN
+.svn/
+
+.metadata
+.settings/
+
 *.war
 *.ear
+
+Thumbs.db 
+
+Desktop.ini
