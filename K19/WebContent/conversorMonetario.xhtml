@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTDXHTML1.0Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>K19</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:commandButton value="Converter"
+				action="#{conversorMonetarioBean.converte}" />
+
+			<h:inputText value="#{conversorMonetarioBean.valor}" />
+
+			<h:outputLabel value="de" for="de" />
+
+			<h:selectOneMenu value="#{conversorMonetarioBean.de}" id="de">
+				<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
+					var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="para" for="para" />
+
+			<h:selectOneMenu value="#{conversorMonetarioBean.para}" id="para">
+				<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
+					var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
+			</h:selectOneMenu>
+			
+		</h:panelGrid>
+	</h:form>
+
+Resultado:#{conversorMonetarioBean.resultado}
+
+</h:body>
+</html>
