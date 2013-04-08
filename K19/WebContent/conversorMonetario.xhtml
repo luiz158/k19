@@ -11,8 +11,7 @@
 <h:body>
 	<h:form>
 		<h:panelGrid columns="2">
-			<h:commandButton value="Converter"
-				action="#{conversorMonetarioBean.converte}" />
+			<h:outputText value="Valor" />
 
 			<h:inputText value="#{conversorMonetarioBean.valor}" />
 
@@ -25,15 +24,25 @@
 
 			<h:outputLabel value="para" for="para" />
 
-			<h:selectOneMenu value="#{conversorMonetarioBean.para}" id="para">
-				<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
-					var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
-			</h:selectOneMenu>
+			<h:panelGroup>
+				<h:selectOneMenu value="#{conversorMonetarioBean.para}" id="para">
+					<f:selectItems value="#{conversorMonetarioBean.taxas.keySet()}"
+						var="moeda" itemValue="#{moeda}" itemLabel="#{moeda}" />
+				</h:selectOneMenu>
+
+				<h:commandButton value="Converter"
+					action="#{conversorMonetarioBean.converte}" />
+			</h:panelGroup>
 			
+			<h:outputFormat span="2" value="{0} em {1} equivale a {2} em {3}"
+				rendered="#{conversorMonetarioBean.resultado != null }">
+				<f:param value="#{conversorMonetarioBean.valor}" />
+				<f:param value="#{conversorMonetarioBean.de}" />
+				<f:param value="#{conversorMonetarioBean.resultado}" />
+				<f:param value="#{conversorMonetarioBean.para}" />
+			</h:outputFormat>
 		</h:panelGrid>
 	</h:form>
-
-Resultado:#{conversorMonetarioBean.resultado}
-
+	<!-- Resultado:#{conversorMonetarioBean.resultado}-->
 </h:body>
 </html>
