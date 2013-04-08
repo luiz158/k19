@@ -2,11 +2,13 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>K19</title>
 </h:head>
 <h:body>
+	<h:outputStylesheet name="k19.css" library="css" />
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome:" for="campo-nome" />
@@ -19,21 +21,28 @@
 	</h:form>
 	<h:dataTable value="#{cursosBean.cursos}" var="curso" border="1"
 		rendered="#{not empty cursosBean.cursos}">
-		
+
 		<f:facet name="header">Lista de Cursos</f:facet>
-		
+
 		<h:column>
 			<f:facet name="header">Sigla</f:facet>
 			#{curso.sigla}
 		</h:column>
-		
+
 		<h:column>
 			<f:facet name="header">Nome</f:facet>
 			#{curso.nome}
 		</h:column>
-		
-		<h:messages globalOnly ="true"/>
+
+		<h:messages globalOnly="true" />
 		<!-- 122 -->
 	</h:dataTable>
+
+	<h1>cursos da K19 :</h1>
+	<ul>
+		<ui:repeat value="#{cursosBean.cursos }" var="curso">
+			<li><h:outputText value="#{curso.sigla}: #{curso.nome}" /></li>
+		</ui:repeat>
+	</ul>
 </h:body>
 </html>

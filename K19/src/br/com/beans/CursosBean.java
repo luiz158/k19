@@ -17,9 +17,14 @@ public class CursosBean {
 	private Curso curso = new Curso();
 
 	public void adicionaCurso(){
+		if(this.curso.getNome().isEmpty() || this.curso.getSigla().isEmpty()){
+			FacesMessage mensagem = new FacesMessage("Preencha os dados corretamente");
+			FacesContext.getCurrentInstance().addMessage(null , mensagem );
+			return;
+		}
 		this.cursos.add(this.curso);
 		
-		FacesMessage mensagem = new FacesMessage("Curso "+this.curso.getNome()+" adicionado com sucesso!");
+		FacesMessage mensagem = new FacesMessage("O curso "+this.curso.getNome()+" foi adicionado com sucesso!");
 		FacesContext.getCurrentInstance().addMessage(null , mensagem );
 		
 		this.curso = new Curso();
